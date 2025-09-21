@@ -3,31 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RivalismeUniverse - Portal Dimensional</title>
+    <title>Rivalisme Universe - Portal Dimensional</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@400;600&family=Source+Code+Pro:wght@400;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {margin: 0;padding: 0;box-sizing: border-box;}
         body {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: white; font-family: 'Orbitron', monospace;
-            overflow-x: hidden; min-height: 100vh;
+            color: white;
+            font-family: 'Orbitron', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
-        /* Loading Screen */
-        .loading-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: flex; justify-content: center; align-items: center;
-            z-index: 1000; transition: opacity 0.5s ease; }
-        .loading-quote { font-size: 1.2rem; text-align: center; opacity: 0;
-            animation: fadeQuote 2s ease-in-out; max-width: 80%; }
+        .loading-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; transition: opacity 0.5s ease;
+        }
+        .loading-quote {
+            font-size: 1.2rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeQuote 2s ease-in-out;
+            max-width: 80%;
+        }
         @keyframes fadeQuote { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
         .loading-screen.hidden { opacity: 0; pointer-events: none; }
+        .hero {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; position: relative;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 4s ease-in-out infinite;
+        }
+        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: 3rem; opacity: 0.8; font-weight: 400; }
+        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .character-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+        }
+        .character-card {
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+            border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1);
+            position: relative; overflow: hidden;
+        }
+        .character-card::before {
+            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .character-card:hover::before { transform: translateX(100%); }
+        .character-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .unuser { border-color: #ff4757; background: linear-gradient(135deg, rgba(255,71,87,0.1), rgba(0,0,0,0.3)); }
+        .unuser:hover { box-shadow: 0 20px 40px rgba(255,71,87,0.3); }
+        .unuser .character-icon { color: #ff4757; }
+        .solara { border-color: #ffa502; background: linear-gradient(135deg, rgba(255,165,2,0.1), rgba(0,0,0,0.3)); }
+        .solara:hover { box-shadow: 0 20px 40px rgba(255,165,2,0.3); }
+        .solara .character-icon { color: #ffa502; }
+        .nexar { border-color: #3742fa; background: linear-gradient(135deg, rgba(55,66,250,0.1), rgba(0,0,0,0.3)); }
+        .nexar:hover { box-shadow: 0 20px 40px rgba(55,66,250,0.3); }
+        .nexar .character-icon { color: #3742fa; }
+        .character-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+        .character-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .character-tagline { font-size: 0.9rem; opacity: 0.7; margin-bottom: 1rem; font-style: italic; }
+        .character-description { font-size: 0.8rem; line-height: 1.5; opacity: 0.8; }
+        .character-quote {
+            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+            background: rgba(0,0,0,0.9); padding: 1rem; border-radius: 10px; font-size: 0.9rem;
+            white-space: nowrap; opacity: 0; transition: all 0.3s ease; pointer-events: none; z-index: 10;
+        }
+        .character-card:hover .character-quote { top: -60px; opacity: 1; }
+        @media (max-width: 768px) {
+            .character-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+        }
     </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1800);
+        });
+        function openUniverse(character) {
+            alert("Gerbang semesta " + character + " akan terbuka di versi selanjutnya!");
+        }
+    </script>
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loading-quote" id="loadingQuote">
             "Realitas adalah konsensus kolektif yang bisa di-hack..."
         </div>
+    </div>
+    <div id="mainPortal">
+        <section class="hero">
+            <h1 class="hero-title">RivalismeUniverse</h1>
+            <p class="hero-subtitle">Dimensi Pikiran, Afirmasi, dan Kekacauan</p>
+            <p style="font-size: 1rem; opacity: 0.6; margin-bottom: 2rem;">
+                Klik karakter untuk membuka gerbang semesta mereka
+            </p>
+            <div class="character-grid">
+                <div class="character-card unuser" onclick="openUniverse('unuser')">
+                    <div class="character-quote">
+                        "Kebenaran itu overrated, yang penting brutal honest."
+                    </div>
+                    <div class="character-icon">🔥</div>
+                    <h3 class="character-name">Unuser</h3>
+                    <p class="character-tagline">Kaos yang Menguliti Kebenaran</p>
+                    <p class="character-description">
+                        Konten satir, sarkas, dan kritik sosial.
+                        Roasting reality dengan brutal honesty yang bikin lo mikir dua kali.
+                    </p>
+                </div>
+                <div class="character-card solara" onclick="openUniverse('solara')">
+                    <div class="character-quote">
+                        "Luka yang dirawat dengan puisi akan jadi cahaya."
+                    </div>
+                    <div class="character-icon">🌞</div>
+                    <h3 class="character-name">Solara</h3>
+                    <p class="character-tagline">Cahaya yang Mengamini Luka</p>
+                    <p class="character-description">
+                        Konten puitis, spiritual, kontemplatif.
+                        Transform trauma jadi keindahan lewat kata-kata yang menyentuh jiwa.
+                    </p>
+                </div>
+                <div class="character-card nexar" onclick="openUniverse('nexar')">
+                    <div class="character-quote">
+                        "Sistem terbaik adalah yang mempertanyakan dirinya sendiri."
+                    </div>
+                    <div class="character-icon">🧠</div>
+                    <h3 class="character-name">Nexar</h3>
+                    <p class="character-tagline">Sistem yang Mencurigai Sistem</p>
+                    <p class="character-description">
+                        Konten eksistensial, logis, kontradiktif.
+                        Hacking mental framework dengan prompt AI dan philosophical tools.
+                    </p>
+                </div>
+            </div>
+        </section>
     </div>
 </body>
 </html>
