@@ -1,711 +1,603 @@
 <!DOCTYPE html>
-<html lang="id">
-<head>
+<html lang="en">
+    head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RivalismeUniverse - Dimensional Portal</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="RivalismeUniverse: Portal Dimensi Pikiran, Afirmasi, dan Kekacauan. Portal of Mind Dimensions, Affirmations, and Chaos.">
-    <meta name="keywords" content="rivalisme, universe, unuser, solara, nexar, affirmation, philosophy, healing, satire, poetry, AI, mental, spiritual">
+    <meta name="description" content="RivalismeUniverse: Personality.">
+    <meta name="keywords" content="rivalisme, universe, NFT, Blockchain, LLM, CEX, DEX, affirmation, philosophy, healing, satire, poetry, AI, mental, spiritual">
     <meta name="author" content="unuserv01-lab">
     <meta property="og:title" content="RivalismeUniverse">
     <meta property="og:description" content="Portal Dimensi Pikiran, Afirmasi, dan Kekacauan. Portal of Mind Dimensions, Affirmations, and Chaos.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://unuserv01-lab.github.io/RivalismeUniverse-/">
     <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIVALISME - Blockchain Innovator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Cinzel:wght@400;600&family=Source+Code+Pro:wght@400;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00D1FF;
+            --secondary: #7B61FF;
+            --accent: #FF00C7;
+            --dark: #0A0A0A;
+            --darker: #050505;
+            --light: #FFFFFF;
+            --gray: #1A1A1A;
+        }
+
         body {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: white;
-            font-family: 'Orbitron', monospace;
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 50%, var(--darker) 100%);
+            color: var(--light);
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
             overflow-x: hidden;
-            min-height: 100vh;
-        }
-        .loading-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: flex; justify-content: center; align-items: center;
-            z-index: 1000; transition: opacity 0.5s ease;
-        }
-        .loading-quote {
-            font-size: 1.2rem; text-align: center; opacity: 0;
-            animation: fadeQuote 2s ease-in-out; max-width: 80%;
-        }
-        @keyframes fadeQuote { 0%,100%{opacity:0;} 50%{opacity:1;} }
-        .loading-screen.hidden { opacity: 0; pointer-events: none; }
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-        .hero-title {
-            font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 400% 400%;
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
-        }
-        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: 3rem; opacity: 0.8; font-weight: 400; }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .character-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
-        }
-        .character-card {
-            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer;
-            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1);
-            position: relative; overflow: hidden;
-        }
-        .character-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        .character-card:hover::before { transform: translateX(100%); }
-        .character-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .unuser { border-color: #ff4757; background: linear-gradient(135deg, rgba(255,71,87,0.1), rgba(0,0,0,0.3)); }
-        .unuser:hover { box-shadow: 0 20px 40px rgba(255,71,87,0.3); }
-        .unuser .character-icon { color: #ff4757; }
-        .solara { border-color: #ffa502; background: linear-gradient(135deg, rgba(255,165,2,0.1), rgba(0,0,0,0.3)); }
-        .solara:hover { box-shadow: 0 20px 40px rgba(255,165,2,0.3); }
-        .solara .character-icon { color: #ffa502; }
-        .nexar { border-color: #3742fa; background: linear-gradient(135deg, rgba(55,66,250,0.1), rgba(0,0,0,0.3)); }
-        .nexar:hover { box-shadow: 0 20px 40px rgba(55,66,250,0.3); }
-        .nexar .character-icon { color: #3742fa; }
-        .character-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-        .character-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .character-tagline { font-size: 0.9rem; opacity: 0.7; margin-bottom: 1rem; font-style: italic; }
-        .character-description { font-size: 0.8rem; line-height: 1.5; opacity: 0.8; }
-        .character-quote {
-            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.9); padding: 1rem; border-radius: 10px; font-size: 0.9rem;
-            white-space: nowrap; opacity: 0; transition: all 0.3s ease; pointer-events: none; z-index: 10;
-        }
-        .character-card:hover .character-quote { top: -60px; opacity: 1; }
-        .random-portal {
-            position: fixed; bottom: 2rem; right: 2rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border: none; border-radius: 50px; padding: 1rem 2rem;
-            color: white; font-weight: 700; cursor: pointer; transition: all 0.3s ease;
-            font-size: 0.9rem; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-        .random-portal:hover { transform: scale(1.1); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-        .character-universe { display: none; min-height: 100vh; padding: 2rem; text-align: center; }
-        .character-universe.active { display: block; }
-        .universe-header { margin-bottom: 3rem; }
-        .universe-title { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; }
-        .universe-description { font-size: 1.2rem; max-width: 800px; margin: 0 auto; line-height: 1.6; opacity: 0.9; }
-        .back-btn {
-            position: fixed; top: 2rem; left: 2rem;
-            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 50px; padding: 0.5rem 1.5rem; color: white; cursor: pointer; transition: all 0.3s ease;
-        }
-        .back-btn:hover { background: rgba(255,255,255,0.2); }
-        .content-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto;
-        }
-        .content-card {
-            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-            border-radius: 15px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.1);
-        }
-        @media (max-width: 768px) {
-            .character-grid { grid-template-columns: 1fr; padding: 0 1rem; }
-            .random-portal { bottom: 1rem; right: 1rem; padding: 0.8rem 1.5rem; font-size: 0.8rem; }
-        }
-    </style>
-</head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-quote" id="loadingQuote">
-            "Reality is a collective consensus that can be hacked... / Realitas adalah konsensus kolektif yang bisa di-hack..."
-        </div>
-    </div>
-    <!-- Main Portal -->
-    <div id="mainPortal">
-        <!-- Hero Section -->
-        <section class="hero">
-            <h1 class="hero-title">RivalismeUniverse</h1>
-            <p class="hero-subtitle">Mind Dimensions, Affirmations, and Chaos<br>Dimensi Pikiran, Afirmasi, dan Kekacauan</p>
-            <p style="font-size: 1rem; opacity: 0.6; margin-bottom: 2rem;">
-                Click on a character to open their universe gate.<br>
-                Klik karakter untuk membuka gerbang semesta mereka.
-            </p>
-            <!-- Character Portal Grid -->
-            <div class="character-grid">
-                <!-- Unuser Card -->
-                <div class="character-card unuser" onclick="openUniverse('unuser')">
-                    <div class="character-quote">
-                        "Truth is overrated, honest brutality matters. / Kebenaran itu overrated, yang penting brutal honest."
-                    </div>
-                    <div class="character-icon">🔥</div>
-                    <h3 class="character-name">Unuser</h3>
-                    <p class="character-tagline">
-                        Chaos Unveiling Truth<br>Kaos yang Menguliti Kebenaran
-                    </p>
-                    <p class="character-description">
-                        Satirical, sarcastic, and social critique content.<br>
-                        Roasting reality with brutal honesty that makes you think twice.<br>
-                        Konten satir, sarkas, dan kritik sosial.<br>
-                        Roasting reality dengan brutal honesty yang bikin lo mikir dua kali.
-                    </p>
-                </div>
-                <!-- Solara Card -->
-                <div class="character-card solara" onclick="openUniverse('solara')">
-                    <div class="character-quote">
-                        "Wounds healed by poetry become light. / Luka yang dirawat dengan puisi akan jadi cahaya."
-                    </div>
-                    <div class="character-icon">🌞</div>
-                    <h3 class="character-name">Solara</h3>
-                    <p class="character-tagline">
-                        Light Embracing Wounds<br>Cahaya yang Mengamini Luka
-                    </p>
-                    <p class="character-description">
-                        Poetic, spiritual, contemplative content.<br>
-                        Transforming trauma into beauty through soulful words.<br>
-                        Konten puitis, spiritual, kontemplatif.<br>
-                        Transform trauma jadi keindahan lewat kata-kata yang menyentuh jiwa.
-                    </p>
-                </div>
-                <!-- Nexar Card -->
-                <div class="character-card nexar" onclick="openUniverse('nexar')">
-                    <div class="character-quote">
-                        "The best system questions itself. / Sistem terbaik adalah yang mempertanyakan dirinya sendiri."
-                    </div>
-                    <div class="character-icon">🧠</div>
-                    <h3 class="character-name">Nexar</h3>
-                    <p class="character-tagline">
-                        System Distrusting System<br>Sistem yang Mencurigai Sistem
-                    </p>
-                    <p class="character-description">
-                        Existential, logical, and contradictory content.<br>
-                        Hacking mental frameworks with AI prompts and philosophical tools.<br>
-                        Konten eksistensial, logis, kontradiktif.<br>
-                        Hacking mental framework dengan prompt AI dan philosophical tools.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Unuser Universe -->
-    <div class="character-universe" id="unuserUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #ff4757;">Unuser Universe</h1>
-            <p class="universe-description">
-                Welcome to the zone of brutal honesty.<br>
-                Here, every hypocrisy, toxic positivity, and social bullshit will be roasted.<br>
-                Get ready for a reality check that might make you uncomfortable but definitely more aware.<br>
-                Selamat datang di zona brutal honesty.<br>
-                Di sini, segala kemunafikan, toxic positivity, dan bullshit sosial akan di-roasting habis-habisan.<br>
-                Bersiaplah untuk reality check yang mungkin bikin lo uncomfortable, tapi pasti bikin lo lebih aware.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🔥 Kick-Your-Butt Affirmations<br>Afirmasi Kick Lo Pantat</h3>
-                <p>Affirmations that don't sugarcoat, direct to the point and make you move.<br>Afirmasi yang gak sugarcoating, langsung to the point dan bikin lo bergerak.</p>
-            </div>
-            <div class="content-card">
-                <h3>💀 Brutal Bedtime Prayer<br>Doa Sebelum Tidur (Brutal Version)</h3>
-                <p>Daily honest reflection about what you've done today.<br>Refleksi harian yang honest tentang apa yang lo lakuin hari ini.</p>
-            </div>
-            <div class="content-card">
-                <h3>⚡ Roasting Generator</h3>
-                <p>Interactive tool to roast bad habits and toxic mindsets.<br>Tool interaktif buat nge-roast habit buruk dan pola pikir toxic.</p>
-            </div>
-            <div class="content-card">
-                <h3>🎯 Brutal Honesty Cards<br>Kartu Kejujuran Brutal</h3>
-                <p>Questions that make you reflect on yourself.<br>Pertanyaan-pertanyaan yang bikin lo ngaca sama diri sendiri.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Solara Universe -->
-    <div class="character-universe" id="solaraUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #ffa502;">Solara Universe</h1>
-            <p class="universe-description">
-                Enter the space of gentle yet deep healing.<br>
-                Here, every wound is healed with poetry, every trauma is transformed into light.<br>
-                Find beauty in sadness and strength in vulnerability.<br>
-                Masuki ruang penyembuhan yang lembut namun mendalam.<br>
-                Di sini, setiap luka dirawat dengan puisi, setiap trauma diubah jadi cahaya.<br>
-                Temukan keindahan dalam kesedihan dan kekuatan dalam kerentanan.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🌅 Longing for Home<br>Rindu Pulang</h3>
-                <p>Poetry collection about spiritual journey toward inner peace.<br>Koleksi puisi tentang journey spiritual menuju inner peace.</p>
-            </div>
-            <div class="content-card">
-                <h3>🕊️ Servant of Silence<br>Hamba Kesunyian</h3>
-                <p>Reflection about solitude as a space for growth.<br>Refleksi tentang solitude sebagai ruang untuk bertumbuh.</p>
-            </div>
-            <div class="content-card">
-                <h3>🙏 Forgotten Prayers<br>Doa-doa Terlupa</h3>
-                <p>Mantras and spiritual affirmations for healing past trauma.<br>Mantra dan afirmasi spiritual untuk healing trauma masa lalu.</p>
-            </div>
-            <div class="content-card">
-                <h3>🌸 Poetic Affirmation Cards<br>Kartu Afirmasi Puitis</h3>
-                <p>Daily wisdom in poetic form that touches the soul.<br>Daily wisdom dalam bentuk puisi yang menyentuh jiwa.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Nexar Universe -->
-    <div class="character-universe" id="nexarUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #3742fa;">Nexar Universe</h1>
-            <p class="universe-description">
-                Enter the mind maze.<br>
-                Here, every system is questioned, every assumption challenged, reality hacked from within.<br>
-                Get ready for an existential journey that changes your view of the world and yourself.<br>
-                Enter the mind maze.<br>
-                Di sini segala sistem di-questioning, setiap asumsi di-challenge, dan reality di-hack dari dalam.<br>
-                Bersiaplah untuk journey eksistensial yang mengubah cara lo memandang dunia dan diri sendiri.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🤖 AI Prompt Mastery</h3>
-                <p>Framework for manipulating AI and psychological prompting.<br>Framework untuk manipulasi AI dan psychological prompting.</p>
-            </div>
-            <div class="content-card">
-                <h3>⚙️ Self-System Hack Mini Tools</h3>
-                <p>Tools to analyze and modify mental patterns.<br>Tools untuk menganalisis dan memodifikasi mental patterns.</p>
-            </div>
-            <div class="content-card">
-                <h3>🧪 Philosophical Test<br>Tes Filosofis</h3>
-                <p>Mental experiments to challenge your belief system.<br>Eksperimen mental untuk challenge belief system lo.</p>
-            </div>
-            <div class="content-card">
-                <h3>🌀 Existence Simulation<br>Simulasi Eksistensi</h3>
-                <p>Interactive scenarios to explore different realities.<br>Interactive scenarios untuk explore different realities.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Random Portal Button -->
-    <button class="random-portal" onclick="randomPortal()">
-        🎲 Random Portal
-    </button>
-
-    <script>
-        // Loading Screen Animation
-        const loadingQuotes = [
-            "Reality is a collective consensus that can be hacked... / Realitas adalah konsensus kolektif yang bisa di-hack...",
-            "Truth is overrated, honest brutality matters. / Kebenaran itu overrated, yang penting brutal honest.",
-            "Wounds healed by poetry become light. / Luka yang dirawat dengan puisi akan jadi cahaya.",
-            "The best system questions itself. / Sistem terbaik adalah yang mempertanyakan dirinya sendiri.",
-            "Welcome to RivalismeUniverse, where chaos meets consciousness."
-        ];
-        let quoteIndex = 0;
-        const loadingQuote = document.getElementById('loadingQuote');
-        function cycleQuotes() {
-            loadingQuote.textContent = loadingQuotes[quoteIndex];
-            quoteIndex = (quoteIndex + 1) % loadingQuotes.length;
-        }
-        const quoteInterval = setInterval(cycleQuotes, 2000);
-        setTimeout(() => {
-            clearInterval(quoteInterval);
-            document.getElementById('loadingScreen').classList.add('hidden');
-        }, 6000);
-
-        // Universe Navigation
-        function openUniverse(character) {
-            document.getElementById('mainPortal').style.display = 'none';
-            document.getElementById(character + 'Universe').classList.add('active');
-            document.body.className = character + '-theme';
-        }
-        function backToPortal() {
-            document.getElementById('mainPortal').style.display = 'block';
-            document.querySelectorAll('.character-universe').forEach(universe => {
-                universe.classList.remove('active');
-            });
-            document.body.className = '';
-        }
-        function randomPortal() {
-            const characters = ['unuser', 'solara', 'nexar'];
-            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-            openUniverse(randomCharacter);
-        }
-        // Sparkle effect
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.1) { createSparkle(e.clientX, e.clientY); }
-        });
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.style.position = 'fixed';
-            sparkle.style.left = x + 'px';
-            sparkle.style.top = y + 'px';
-            sparkle.style.width = '4px';
-            sparkle.style.height = '4pxn">
-                        Konten satir, sarkas, dan kritik sosial. 
-                        Roasting reality dengan brutal honesty yang bikin lo mikir dua kali.
-                    </p>
-                </div>
-
-                <!-- Solara Card -->
-                <div class="character-card solara" onclick="openUniverse('solara')">
-                    <div class="character-quote">
-                        "Luka yang dirawat dengan puisi akan jadi cahaya."
-                    </div>
-                    <div class="character-icon">🌞</div>
-                    <h3 class="character-name">Solara</h3>
-                    <p class="character-tagline">Cahaya yang Mengamini Luka</p>
-                    <p class="character-description">
-                        Konten puitis, spiritual, kontemplatif. 
-                        Transform trauma jadi keindahan lewat kata-kata yang menyentuh jiwa.
-                    </p>
-                </div>
-
-                <!-- Nexar Card -->
-                <div class="character-card nexar" onclick="openUniverse('nexar')">
-                    <div class="character-quote">
-                        "Sistem terbaik adalah yang mempertanyakan dirinya sendiri."
-                    </div>
-                    <div class="character-icon">🧠</div>
-                    <h3 class="character-name">Nexar</h3>
-                    <p class="character-tagline">Sistem yang Mencurigai Sistem</p>
-                    <p class="character-description">
-                        Konten eksistensial, logis, kontradiktif. 
-                        Hacking mental framework dengan prompt AI dan philosophical tools.
-                    </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Unuser Universe -->
-    <div class="character-universe" id="unuserUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #ff4757;">Unuser Universe</h1>
-            <p class="universe-description">
-                Selamat datang di zona brutal honesty. Di sini, segala bentuk kemunafikan, 
-                toxic positivity, dan bullshit sosial akan di-roasting habis-habisan. 
-                Bersiaplah untuk reality check yang mungkin bikin lo uncomfortable, 
-                tapi pasti bikin lo lebih aware.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🔥 Afirmasi Kick Lo Pantat</h3>
-                <p>Afirmasi yang gak sugarcoating, langsung to the point dan bikin lo bergerak.</p>
-            </div>
-            <div class="content-card">
-                <h3>💀 Doa Sebelum Tidur (Brutal Version)</h3>
-                <p>Refleksi harian yang honest tentang apa yang lo lakuin hari ini.</p>
-            </div>
-            <div class="content-card">
-                <h3>⚡ Roasting Generator</h3>
-                <p>Tool interaktif buat nge-roast habit buruk dan pola pikir toxic.</p>
-            </div>
-            <div class="content-card">
-                <h3>🎯 Kartu Kejujuran Brutal</h3>
-                <p>Pertanyaan-pertanyaan yang bikin lo ngaca sama diri sendiri.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Solara Universe -->
-    <div class="character-universe" id="solaraUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #ffa502;">Solara Universe</h1>
-            <p class="universe-description">
-                Masuki ruang penyembuhan yang lembut namun mendalam. Di sini, 
-                setiap luka dirawat dengan puisi, setiap trauma diubah jadi cahaya. 
-                Temukan keindahan dalam kesedihan dan kekuatan dalam kerentanan.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🌅 Rindu Pulang</h3>
-                <p>Koleksi puisi tentang journey spiritual menuju inner peace.</p>
-            </div>
-            <div class="content-card">
-                <h3>🕊️ Hamba Kesunyian</h3>
-                <p>Refleksi tentang solitude sebagai ruang untuk bertumbuh.</p>
-            </div>
-            <div class="content-card">
-                <h3>🙏 Doa-doa Terlupa</h3>
-                <p>Mantra dan afirmasi spiritual untuk healing trauma masa lalu.</p>
-            </div>
-            <div class="content-card">
-                <h3>🌸 Kartu Afirmasi Puitis</h3>
-                <p>Daily wisdom dalam bentuk puisi yang menyentuh jiwa.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Nexar Universe -->
-    <div class="character-universe" id="nexarUniverse">
-        <button class="back-btn" onclick="backToPortal()">← Portal</button>
-        <div class="universe-header">
-            <h1 class="universe-title" style="color: #3742fa;">Nexar Universe</h1>
-            <p class="universe-description">
-                Enter the mind maze. Di sini segala sistem di-questioning, 
-                setiap asumsi di-challenge, dan reality di-hack dari dalam. 
-                Bersiaplah untuk journey eksistensial yang mengubah cara lo 
-                memandang dunia dan diri sendiri.
-            </p>
-        </div>
-        <div class="content-grid">
-            <div class="content-card">
-                <h3>🤖 Prompt AI Mastery</h3>
-                <p>Framework untuk manipulasi AI dan psychological prompting.</p>
-            </div>
-            <div class="content-card">
-                <h3>⚙️ Mini Tools Self-System Hack</h3>
-                <p>Tools untuk menganalisis dan memodifikasi mental patterns.</p>
-            </div>
-            <div class="content-card">
-                <h3>🧪 Tes Filosofis</h3>
-                <p>Eksperimen mental untuk challenge belief system lo.</p>
-            </div>
-            <div class="content-card">
-                <h3>🌀 Simulasi Eksistensi</h3>
-                <p>Interactive scenarios untuk explore different realities.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Random Portal Button -->
-    <button class="random-portal" onclick="randomPortal()">
-        🎲 Random Portal
-    </button>
-
-    <script>
-        // Loading Screen Animation
-        const loadingQuotes = [
-            "Realitas adalah konsensus kolektif yang bisa di-hack...",
-            "Kebenaran itu overrated, yang penting brutal honest.",
-            "Luka yang dirawat dengan puisi akan jadi cahaya.",
-            "Sistem terbaik adalah yang mempertanyakan dirinya sendiri.",
-            "Welcome to RivalismeUniverse, where chaos meets consciousness."
-        ];
-
-        let quoteIndex = 0;
-        const loadingQuote = document.getElementById('loadingQuote');
-        
-        function cycleQuotes() {
-            loadingQuote.textContent = loadingQuotes[quoteIndex];
-            quoteIndex = (quoteIndex + 1) % loadingQuotes.length;
         }
 
-        // Cycle through quotes during loading
-        const quoteInterval = setInterval(cycleQuotes, 2000);
-
-        // Hide loading screen after 6 seconds
-        setTimeout(() => {
-            clearInterval(quoteInterval);
-            document.getElementById('loadingScreen').classList.add('hidden');
-        }, 6000);
-
-        // Universe Navigation
-        function openUniverse(character) {
-            document.getElementById('mainPortal').style.display = 'none';
-            document.getElementById(character + 'Universe').classList.add('active');
-            
-            // Add specific theme to body
-            document.body.className = character + '-theme';
+        /* Background Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 209, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123, 97, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(255, 0, 199, 0.05) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+            z-index: -1;
         }
 
-        function backToPortal() {
-            document.getElementById('mainPortal').style.display = 'block';
-            document.querySelectorAll('.character-universe').forEach(universe => {
-                universe.classList.remove('active');
-            });
-            document.body.className = '';
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.02); }
         }
 
-        // Random Portal Function
-        function randomPortal() {
-            const characters = ['unuser', 'solara', 'nexar'];
-            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
-            openUniverse(randomCharacter);
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 209, 255, 0.2);
         }
 
-        // Add some interactive sparkle effect on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.1) {
-                createSparkle(e.clientX, e.clientY);
-            }
-        });
-
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.style.position = 'fixed';
-            sparkle.style.left = x + 'px';
-            sparkle.style.top = y + 'px';
-            sparkle.style.width = '4px';
-            sparkle.style.height = '4px';
-            sparkle.style.background = 'white';
-            sparkle.style.borderRadius = '50%';
-            sparkle.style.pointerEvents = 'none';
-            sparkle.style.zIndex = '999';
-            sparkle.style.animation = 'sparkleAnim 1s ease-out forwards';
-            
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 1000);
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        // Add sparkle animation
-        const sparkleCSS = `
-            @keyframes sparkleAnim {
-                0% {
-                    opacity: 1;
-                    transform: scale(0);
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0);
-                }
-            }
-        `;
-        
-        const styleSheet = document.createElement('style');
-        styleSheet.textContent = sparkleCSS;
-        document.head.appendChild(styleSheet);
-    </script>
-</body>
-</html>            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-        }
-        .hero-title {
-            font-size: clamp(2rem, 5vw, 4rem); font-weight: 900; margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-            background-size: 400% 400%;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientShift 4s ease-in-out infinite;
         }
-        .hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.5rem); margin-bottom: 3rem; opacity: 0.8; font-weight: 400; }
-        @keyframes gradientShift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-        .character-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem; max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
         }
-        .character-card {
-            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
-            border-radius: 20px; padding: 2rem; text-align: center; cursor: pointer;
-            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.1);
-            position: relative; overflow: hidden;
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
         }
-        .character-card::before {
-            content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+
+        .nav-links a:hover {
+            color: var(--primary);
         }
-        .character-card:hover::before { transform: translateX(100%); }
-        .character-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
-        .unuser { border-color: #ff4757; background: linear-gradient(135deg, rgba(255,71,87,0.1), rgba(0,0,0,0.3)); }
-        .unuser:hover { box-shadow: 0 20px 40px rgba(255,71,87,0.3); }
-        .unuser .character-icon { color: #ff4757; }
-        .solara { border-color: #ffa502; background: linear-gradient(135deg, rgba(255,165,2,0.1), rgba(0,0,0,0.3)); }
-        .solara:hover { box-shadow: 0 20px 40px rgba(255,165,2,0.3); }
-        .solara .character-icon { color: #ffa502; }
-        .nexar { border-color: #3742fa; background: linear-gradient(135deg, rgba(55,66,250,0.1), rgba(0,0,0,0.3)); }
-        .nexar:hover { box-shadow: 0 20px 40px rgba(55,66,250,0.3); }
-        .nexar .character-icon { color: #3742fa; }
-        .character-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
-        .character-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
-        .character-tagline { font-size: 0.9rem; opacity: 0.7; margin-bottom: 1rem; font-style: italic; }
-        .character-description { font-size: 0.8rem; line-height: 1.5; opacity: 0.8; }
-        .character-quote {
-            position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
-            background: rgba(0,0,0,0.9); padding: 1rem; border-radius: 10px; font-size: 0.9rem;
-            white-space: nowrap; opacity: 0; transition: all 0.3s ease; pointer-events: none; z-index: 10;
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
-        .character-card:hover .character-quote { top: -60px; opacity: 1; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero-text .title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #CCCCCC;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .hero-image {
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 50px rgba(0, 209, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: var(--gray);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 209, 255, 0.2);
+        }
+
+        /* Portfolio Section */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--gray);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(0, 209, 255, 0.3);
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: rgba(0, 209, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 209, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            background: var(--gray);
+            border: 1px solid rgba(0, 209, 255, 0.2);
+            border-radius: 10px;
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 209, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: #666;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .character-grid { grid-template-columns: 1fr; padding: 0 1rem; }
+            .hero-content,
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Kima Coin Inspired Elements */
+        .kima-badge {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.5rem 0;
+        }
+
+        .pulse-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 0.5rem;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById('loadingScreen').classList.add('hidden');
-            }, 1800);
-        });
-        function openUniverse(character) {
-            alert("Gerbang semesta " + character + " akan terbuka di versi selanjutnya!");
-        }
-    </script>
 </head>
 <body>
-    <div class="loading-screen" id="loadingScreen">
-        <div class="loading-quote" id="loadingQuote">
-            "Realitas adalah konsensus kolektif yang bisa di-hack..."
+    <div class="bg-animation"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">RIVALISME.dev</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
         </div>
-    </div>
-    <div id="mainPortal">
-        <section class="hero">
-            <h1 class="hero-title">RivalismeUniverse</h1>
-            <p class="hero-subtitle">Dimensi Pikiran, Afirmasi, dan Kekacauan</p>
-            <p style="font-size: 1rem; opacity: 0.6; margin-bottom: 2rem;">
-                Klik karakter untuk membuka gerbang semesta mereka
-            </p>
-            <div class="character-grid">
-                <div class="character-card unuser" onclick="openUniverse('unuser')">
-                    <div class="character-quote">
-                        "Kebenaran itu overrated, yang penting brutal honest."
-                    </div>
-                    <div class="character-icon">🔥</div>
-                    <h3 class="character-name">Unuser</h3>
-                    <p class="character-tagline">Kaos yang Menguliti Kebenaran</p>
-                    <p class="character-description">
-                        Konten satir, sarkas, dan kritik sosial.
-                        Roasting reality dengan brutal honesty yang bikin lo mikir dua kali.
-                    </p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Innovating Blockchain & AI Solutions</h1>
+                <div class="title">Full-Stack Developer & Blockchain Architect</div>
+                <p>Building the future of decentralized technology with cutting-edge AI integration. Passionate about creating solutions that transform digital experiences.</p>
+                <div class="cta-buttons">
+                    <a href="#portfolio" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i> Get In Touch
+                    </a>
                 </div>
-                <div class="character-card solara" onclick="openUniverse('solara')">
-                    <div class="character-quote">
-                        "Luka yang dirawat dengan puisi akan jadi cahaya."
-                    </div>
-                    <div class="character-icon">🌞</div>
-                    <h3 class="character-name">Solara</h3>
-                    <p class="character-tagline">Cahaya yang Mengamini Luka</p>
-                    <p class="character-description">
-                        Konten puitis, spiritual, kontemplatif.
-                        Transform trauma jadi keindahan lewat kata-kata yang menyentuh jiwa.
-                    </p>
-                </div>
-                <div class="character-card nexar" onclick="openUniverse('nexar')">
-                    <div class="character-quote">
-                        "Sistem terbaik adalah yang mempertanyakan dirinya sendiri."
-                    </div>
-                    <div class="character-icon">🧠</div>
-                    <h3 class="character-name">Nexar</h3>
-                    <p class="character-tagline">Sistem yang Mencurigai Sistem</p>
-                    <p class="character-description">
-                        Konten eksistensial, logis, kontradiktif.
-                        Hacking mental framework dengan prompt AI dan philosophical tools.
-                    </p>
+                <div class="kima-badge">
+                    <span class="pulse-dot"></span>
+                    Currently Working on RivalismeUniverse
                 </div>
             </div>
-        </section>
-    </div>
-</body>
-</html>
+            <div class="hero-image">
+                <img src="Flux_Dev_A_poetic_chaotic_AI_entity_named_Unuser_sitting_in_a__0.jpg" alt="RIVALISME" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Blockchain Visionary & AI Innovator</h3>
+                <p style="margin-bottom: 1.5rem;">
+                    With a passion for cutting-edge technology, I specialize in creating innovative solutions that bridge blockchain 
+                    and artificial intelligence. My journey began with a vision to democratize access to advanced technology through 
+                    user-friendly applications.
+                </p>
+                <p style="margin-bottom: 1.5rem;">
+                    Currently leading the development of RivalismeUniverse - a groundbreaking platform that transforms domains into 
+                    intelligent AI personalities, creating new economic paradigms in the digital space.
+                </p>
+                <div class="skills">
+                    <div class="skill-item">Blockchain</div>
+                    <div class="skill-item">AI/ML</div>
+                    <div class="skill-item">Web3</div>
+                    <div class="skill-item">Smart Contracts</div>
+                    <div class="skill-item">React</div>
+                    <div class="skill-item">Node.js</div>
+                </div>
+            </div>
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 1rem;">Achievements</h3>
+                <div style="background: var(--gray); padding: 1.5rem; border-radius: 10px; border: 1px solid rgba(0, 209, 255, 0.2);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: rgba(0, 209, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div>
+                            
+                            <div style="color: #CCC; font-size: 0.9rem;">RivalismeUniverse Project</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="width: 40px; height: 40px; background: rgba(123, 97, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--secondary);">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">10+ Projects</div>
+                            <div style="color: #CCC; font-size: 0.9rem;">Blockchain & AI Solutions</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 40px; height: 40px; background: rgba(255, 0, 199, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent);">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 600;">Community Leader</div>
+                            <div style="color: #CCC; font-size: 0.9rem;">Web3 Education & Mentorship</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="portfolio-grid">
+            <!-- Project 1 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=200&fit=crop" alt="RivalismeUniverse" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3>RivalismeUniverse</h3>
+                    <p>Revolutionary platform transforming domains into AI personalities for education and content creation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Blockchain</span>
+                        <span class="tech-tag">AI</span>
+                        <span class="tech-tag">Web3</span>
+                        <span class="tech-tag">NFT</span>
+                    </div>
+                    <a href="#" class="btn btn-secondary" style="width: 100%; text-align: center; justify-content: center;">
+                        <i class="fas fa-external-link-alt"></i> Live Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="portfolio-item">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" alt="DeFi Protocol" class="portfolio-img">
+                <div class="portfolio-content">
+                    <h3>DeFi Trading Platform</h3>
+                    <p>Decentralized finance protocol with advanced trading features and yield optimization.</p>
+               
